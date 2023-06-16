@@ -27,14 +27,14 @@ class _BeritaViewState extends State<BeritaView> {
         backgroundColor: Colors.grey[100],
         appBar: AppBar(
           title: const Text('Breaking News'),
-          actions: [
-            IconButton(
-              onPressed: () {
-                print('object');
-              },
-              icon: const Icon(Icons.search),
-            ),
-          ],
+          // actions: [
+          //   IconButton(
+          //     onPressed: () {
+          //       print('object');
+          //     },
+          //     icon: const Icon(Icons.search),
+          //   ),
+          // ],
         ),
         body: ListView.builder(
           itemCount: listBerita['articles'].length,

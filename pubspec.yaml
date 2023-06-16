@@ -39,6 +39,11 @@ dependencies:
   hive: ^2.2.3
   url_launcher: ^6.1.11
   hive_flutter: ^1.1.0
+  flutter_native_splash: ^2.3.1
+
+flutter_native_splash:
+  image: assets/img/splash.png
+  color: "#000000"
 
 dev_dependencies:
   flutter_test:

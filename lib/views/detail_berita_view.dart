@@ -26,15 +26,29 @@ class DetailBeritaView extends StatelessWidget {
           ),
           IconButton(
             onPressed: () {
-              BookmarkDB().create(
-                  author: datas['author'],
-                  title: datas['title'],
-                  description: datas['description'],
-                  url: datas['url'],
-                  urlToImage: datas['urlToImage'],
-                  publishedAt: datas['publishedAt'],
-                  content: datas['content']);
-              print(BookmarkDB().showData());
+              BookmarkDB()
+                  .create(
+                      author: (datas['author'].toString().isEmpty
+                          ? ''
+                          : datas['author']),
+                      title: datas['title'],
+                      description: datas['description'],
+                      url: datas['url'],
+                      urlToImage: (datas['urlToImage'].toString().isEmpty
+                          ? ''
+                          : datas['urlToImage']),
+                      publishedAt: datas['publishedAt'],
+                      content: datas['content'])
+                  .then((value) {
+                final snackbar = SnackBar(
+                  content: const Text('Berita berhasil di bookmark'),
+                  action: SnackBarAction(
+                    label: 'OK',
+                    onPressed: () {},
+                  ),
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackbar);
+              });
             },
             icon: const Icon(Icons.bookmark_border_outlined),
           ),

@@ -7,7 +7,6 @@ class BookmarkDB {
   Future<Box> init() async {
     // await Hive.deleteBoxFromDisk(tbBookmark);
     Box box = await Hive.openBox(tbBookmark);
-    print(box.values);
     return box;
   }
 
@@ -20,8 +19,8 @@ class BookmarkDB {
     required String publishedAt,
     required String content,
   }) async {
-    // final _tbTamu = Hive.box(db.tbDaftarTamu);
-    await thisTb.add({
+    final tb = Hive.box(tbBookmark);
+    await tb.add({
       'author': author,
       'title': title,
       'description': description,
@@ -32,12 +31,19 @@ class BookmarkDB {
     });
   }
 
-  showData() {
-    final data = thisTb.values.toList();
-    final keys = thisTb.keys.toList();
+  List showData() {
+    final tb = Hive.box(tbBookmark);
+
+    final data = tb.values.toList();
+    final keys = tb.keys.toList();
     for (var i = 0; i < keys.length; i++) {
-      data[i]['key'] = keys[i];
+      data[i]['key'] = keys[i].toString();
     }
     return data.reversed.toList();
+  }
+
+  Future<void> delete(int itemKey) async {
+    final tb = Hive.box(tbBookmark);
+    await tb.delete(itemKey);
   }
 }
